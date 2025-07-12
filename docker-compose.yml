@@ -1,0 +1,33 @@
+services:
+  influxdb:
+    image: influxdb:2.8
+    container_name: influxdb
+    volumes:
+      - ${BIND_INFLUXDB_DATA:-/opt/influxdb/data}:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_INIT_USERNAME:-admin}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_INIT_PASSWORD:-YourStrongefluxPassword}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_INIT_ORG:-production}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_INIT_BUCKET:-internet_speed}
+      - DOCKER_INFLUXDB_INIT_RETENTION=${INFLUXDB_INIT_RETENTION:-720h}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_INIT_ADMIN_TOKEN:-SuperSecureToken}
+    ports:
+      - "${INFLUXDB_PORT:-8086}:8086"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    depends_on:
+      - influxdb
+    volumes:
+      - ${BIND_GRAFANA_DATA:-/opt/grafana/data}:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-YourStrongGrafanaPassword}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SERVER_ROOT_URL=${GRAFANA_ROOT_URL:-http://localhost:3100}
+      - GF_SERVER_HTTP_PORT=${GRAFANA_HTTP_PORT:-3100}
+    ports:
+      - "${GRAFANA_HTTP_PORT:-3100}:3100"
+    restart: unless-stopped

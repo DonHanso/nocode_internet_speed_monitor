@@ -1,0 +1,2 @@
+# Run speedtest-monitor.sh every 4 hours
+0 */4 * * * /usr/local/bin/speedtest-monitor.sh >> /var/log/speedtest-monitor.log 2>&1
