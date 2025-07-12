@@ -1,2 +1,10 @@
-# Run speedtest-monitor.sh every 4 hours
-0 */4 * * * /usr/local/bin/speedtest-monitor.sh >> /var/log/speedtest-monitor.log 2>&1
+# ================================
+# Internet-Speedtest Cron-Jobs
+# ================================
+
+# (A) Kritischer Modus: stündliche Ausführung
+# Einfach das nächste Kommentar entfernen, um diesen Modus zu aktivieren:
+0 * * * * /usr/bin/env bash /home/hans/docker/internet_speed_monitor/scripts/speedtest-monitor.sh >> /var/log/speedtest-monitor.log 2>&1
+
+# (B) Normalbetrieb: alle 4 Stunden
+#0 */4 * * * /usr/bin/env bash /home/hans/docker/internet_speed_monitor/scripts/speedtest-monitor.sh >> /var/log/speedtest-monitor.log 2>&1

@@ -1,6 +1,6 @@
 services:
   influxdb:
-    image: influxdb:2.8
+    image: influxdb:2.7.9
     container_name: influxdb
     volumes:
       - ${BIND_INFLUXDB_DATA:-/opt/influxdb/data}:/var/lib/influxdb2
