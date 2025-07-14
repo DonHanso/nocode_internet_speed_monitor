@@ -1,6 +1,6 @@
-# Production Setup: Internet-Speed Monitoring with InfluxDB & Grafana
+# Setup: Internet-Speed Monitoring with InfluxDB & Grafana
 
-Dieses Repository enthält alles, was zum produktiven Setup mit Docker-Compose notwendig ist:
+Dieses Repository enthält alle Komponenten für ein Setup mit Docker-Compose (getestet unter Ubuntu 24.04.2 LTS):
 
 - **InfluxDB 2.7.9** & **Grafana** in Containern  
 - **Ookla Speedtest CLI** Installation  
@@ -264,5 +264,3 @@ curl -s -u admin:${GRAFANA_ADMIN_PASSWORD} \
 4. Skript testen & Cron-Job aktivieren
 5. Grafana Data Source & Dashboard mit finalen Queries konfigurieren
 6. Backup/Restore bei Bedarf nutzen
-
-Damit hast du ein vollständiges, versioniertes Production-Setup für dein Internet-Speed Monitoring mit InfluxDB und Grafana. Viel Erfolg!
