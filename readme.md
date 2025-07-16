@@ -15,7 +15,7 @@ Dieses Repository enthält alle Komponenten für ein Setup mit Docker-Compose (g
 ```
 
 production-setup/
-├── .env\_example
+├── .env_example
 ├── docker-compose.yml
 ├── scripts/
 │   ├── install\_speedtest\_cli.sh
